@@ -1,0 +1,60 @@
+<main class="flex-shrink-0">
+
+    <div class="container">
+
+        <div class="alert alert-success alert-dismissible fade show " role="alert" *ngIf="confirmMessage">
+            {{confirmMessage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
+        <div class='card'>
+            <div class='card-header'>
+                <h5>Lista dei risultati</h5>
+            </div>
+            <div class='card-body'>
+                <a class="btn btn-primary" routerLink='/atleta/insert'>Add New</a>
+
+                <div class='table-responsive'>
+                    <table class='table table-hover '>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Data ultima gara</th>
+                                <th>Numero medaglie vinte</th>
+                                <th>In Attività</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let atletaItem of atleti">
+                            <tr>
+                                <td>{{atletaItem.id}}</td>
+                                <td>{{atletaItem.nome}}</td>
+                                <td>{{atletaItem.cognome}}</td>
+                                <td>{{atletaItem.dataUltimaGara | date:'dd/MM/yyyy' }}</td>
+                                <td>{{atletaItem.numeroMedaglieVinte}}</td>
+                                <td>{{atletaItem.inAttivita?'SI':'NO'}}</td>
+                                <td>
+                                    <a class="btn  btn-sm btn-outline-secondary"
+                                        [routerLink]="['/appartamento/show',atletaItem.id]">Visualizza</a>
+                                    <a class="btn  btn-sm btn-outline-danger"
+                                        [routerLink]="['/appartamento/delete',atletaItem.id]">Delete</a>
+                                    <a class="btn  btn-sm btn-outline-primary"
+                                        [routerLink]="['/appartamento/edit',atletaItem.id]">Edit</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+
+
+        <!-- end container -->
+    </div>
+</main>
